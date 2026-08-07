@@ -1,3 +1,5 @@
+import 'package:agendify/components/navegacao.dart';
+import 'package:agendify/components/subtitulo_home.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,7 +15,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Agendify"),
-        leading: Icon(Icons.calendar_today, size: 30),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 12.0),
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      body: Column(children: [SubTituloHome(),Navegacao()],)
     );
   }
 }
