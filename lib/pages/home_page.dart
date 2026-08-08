@@ -1,5 +1,3 @@
-import 'package:agendify/components/navegacao.dart';
-import 'package:agendify/components/subtitulo_home.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,14 +15,11 @@ class _HomePageState extends State<HomePage> {
         title: Text("Agendify"),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: Column(
-              children: [Icon(Icons.person, size: 35), Text("username")],
-            ),
+            padding: EdgeInsets.only(right: 20),
+            child: Icon(Icons.feedback_outlined, color: Colors.white),
           ),
         ],
       ),
-      body: Column(children: [SubTituloHome(),Navegacao()],)
     );
   }
 }
