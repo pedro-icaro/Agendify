@@ -1,3 +1,4 @@
+import 'package:agendify/components/subtitulo_home.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      body: SubtituloHome(),
     );
   }
 }

@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 
-class SubTituloHome extends StatelessWidget {
-  const SubTituloHome({super.key});
+class SubtituloHome extends StatelessWidget {
+  const SubtituloHome({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          height: 200,
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 20, top: 40),
-                child: Column(
-                  children: [
-                    Text("Olá, Maria", style: TextStyle(fontSize: 25)),
-                    Text("07/08/26", style: TextStyle(fontSize: 20)),
-                  ],
-                ),
-              ),
-            ],
-          ),
+    return Padding(
+      padding: EdgeInsets.only(left: 18),
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Seja bem vindo(a),",
+              style: TextStyle(fontSize: 15, color: Colors.blueGrey[100]),
+            ),
+            Text("Maria!", style: TextStyle(fontSize: 28)),
+            Text(
+              "Preparada para o dia\n de hoje?",
+              style: TextStyle(fontSize: 15, color: Colors.blueGrey[100]),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
