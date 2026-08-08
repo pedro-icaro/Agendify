@@ -1,5 +1,9 @@
+import 'package:agendify/components/conteudo_home.dart';
 import 'package:agendify/components/faturamento_card.dart';
 import 'package:agendify/components/subtitulo_home.dart';
+import 'package:agendify/pages/faturamento.dart';
+import 'package:agendify/pages/horarios_page.dart';
+import 'package:agendify/pages/perfil.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +16,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _navegacaoindex = 0;
 
-  final List _telas = [];
+  final List<Widget> _telas = [
+    ConteudoHome(),
+    HorariosPage(),
+    Faturamento(),
+    Perfil(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,14 +35,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SubtituloHome(),
-          SizedBox(height: 30),
-          Center(child: FaturamentoCard()),
-        ],
-      ),
+      body: _telas[_navegacaoindex],
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(16),
         child: ClipRRect(
