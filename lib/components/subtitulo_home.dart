@@ -13,12 +13,12 @@ class SubtituloHome extends StatelessWidget {
           children: [
             Text(
               "Seja bem vindo(a),",
-              style: TextStyle(fontSize: 15, color: Colors.blueGrey[100]),
+              style: TextStyle(fontSize: 15, color: Colors.blueGrey[300]),
             ),
             Text("Maria!", style: TextStyle(fontSize: 28)),
             Text(
               "Preparada para o dia\n de hoje?",
-              style: TextStyle(fontSize: 15, color: Colors.blueGrey[100]),
+              style: TextStyle(fontSize: 15, color: Colors.blueGrey[300]),
             ),
           ],
         ),

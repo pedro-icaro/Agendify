@@ -1,3 +1,4 @@
+import 'package:agendify/components/faturamento_card.dart';
 import 'package:agendify/components/subtitulo_home.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: SubtituloHome(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [SubtituloHome(), SizedBox(height: 30), Center(child: FaturamentoCard())],
+      ),
     );
   }
 }
