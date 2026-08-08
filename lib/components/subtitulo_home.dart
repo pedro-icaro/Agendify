@@ -17,7 +17,7 @@ class SubtituloHome extends StatelessWidget {
             ),
             Text("Maria!", style: TextStyle(fontSize: 28)),
             Text(
-              "Preparada para o dia\n de hoje?",
+              "Preparado(a) para o dia\n de hoje?",
               style: TextStyle(fontSize: 15, color: Colors.blueGrey[300]),
             ),
           ],

@@ -10,6 +10,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _navegacaoindex = 0;
+
+  final List _telas = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +27,48 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [SubtituloHome(), SizedBox(height: 30), Center(child: FaturamentoCard())],
+        children: [
+          SubtituloHome(),
+          SizedBox(height: 30),
+          Center(child: FaturamentoCard()),
+        ],
+      ),
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.all(16),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.blueGrey[900],
+            selectedItemColor: Colors.blueAccent,
+            unselectedItemColor: Colors.white60,
+
+            type: BottomNavigationBarType.fixed,
+            currentIndex: _navegacaoindex,
+            onTap: (index) {
+              setState(() {
+                _navegacaoindex = index;
+              });
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined),
+                label: "Inicio",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.calendar_month_outlined),
+                label: "Horarios",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.payments_outlined),
+                label: "Faturamento",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline),
+                label: "Perfil",
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
