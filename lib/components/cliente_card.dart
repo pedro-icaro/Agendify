@@ -25,18 +25,41 @@ class ClienteCard extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
-                  Container(child: Text("${clientesModelo.valor}")),
-                  Column(
-                    children: [
-                      Text(clientesModelo.nome),
-                      Row(
-                        children: [
-                          Text(dataFormatada),
-                          SizedBox(width: 10),
-                          Text(horarioFormatado),
-                        ],
+                  Container(
+                    width: 80,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 3, color: Colors.blue),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "R\$ ${clientesModelo.valor.toStringAsFixed(2)}",
                       ),
-                    ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          clientesModelo.nome,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Text(dataFormatada),
+                            SizedBox(width: 10),
+                            Text(horarioFormatado),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
