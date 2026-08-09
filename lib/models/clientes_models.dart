@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class ClientesModels {
   final int? id;
   final String nome;
-  final DateTime data;
-  final TimeOfDay horario;
+  final String data;
+  final String horario;
   final double valor;
 
   ClientesModels({
