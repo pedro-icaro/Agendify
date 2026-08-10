@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      
       body: _telas[_navegacaoindex],
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(16),
