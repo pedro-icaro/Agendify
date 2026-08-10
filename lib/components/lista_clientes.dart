@@ -41,17 +41,15 @@ class _ListaClientesState extends State<ListaClientes> {
   }
 
   final List<ClientesModels> listaUsuarios = [
-    ClientesModels(
-      nome: "Pedro",
-      data: "12/08/26",
-      horario: "9:30",
-      valor: 25.00,
-    ),
+
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
+      body: listaUsuarios.isEmpty ? Center(
+        child: Column(children: [Text("Nenhum Cliente Adicionado",style: TextStyle(fontSize: 20,),),SizedBox(height: 40,), 
+        Image.asset("assets/images/Waiting.png",width: 200,height: 450,fit: BoxFit.cover,)],),
+      ): ListView.builder(
         shrinkWrap: true, 
         physics: const NeverScrollableScrollPhysics(),
         itemCount: listaUsuarios.length,
