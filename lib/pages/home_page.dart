@@ -14,17 +14,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String nomeUsuario = "Pedro Bandeira";
   int _navegacaoindex = 0;
 
-  final List<Widget> _telas = [
-    ConteudoHome(),
-    HorariosPage(),
-    Faturamento(),
-    Perfil(),
-  ];
+  void atualizarNome(novoNome) {
+    setState(() {
+      nomeUsuario = novoNome;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _telas = [
+      ConteudoHome(nomeAtual: nomeUsuario),
+      HorariosPage(),
+      Faturamento(),
+      Perfil(),
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Text("Agendify"),
@@ -35,7 +41,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      
+
       body: _telas[_navegacaoindex],
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(16),

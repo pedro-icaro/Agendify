@@ -7,7 +7,8 @@ import 'package:agendify/models/clientes_models.dart';
 import 'package:flutter/material.dart';
 
 class ConteudoHome extends StatefulWidget {
-  const ConteudoHome({super.key});
+  String nomeAtual;
+  ConteudoHome({required this.nomeAtual, super.key});
 
   @override
   State<ConteudoHome> createState() => _ConteudoHomeState();
@@ -20,7 +21,7 @@ class _ConteudoHomeState extends State<ConteudoHome> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SubtituloHome(),
+          SubtituloHome(nome: widget.nomeAtual),
           SizedBox(height: 20),
           Center(child: FaturamentoCard()),
           SizedBox(height: 20),
