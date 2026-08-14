@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String nomeUsuario = "Pedro Bandeira";
+  String nomeUsuario = "Pedro";
   int _navegacaoindex = 0;
 
   void atualizarNome(novoNome) {
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       ConteudoHome(nomeAtual: nomeUsuario),
       HorariosPage(),
       Faturamento(),
-      Perfil(),
+      Perfil(nomeAtual: nomeUsuario, funcao: atualizarNome),
     ];
     return Scaffold(
       appBar: AppBar(
