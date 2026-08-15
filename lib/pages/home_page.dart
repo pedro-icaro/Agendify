@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-   final List<ClientesModels> listaUsuarios = [
+  final List<ClientesModels> listaUsuarios = [
     ClientesModels(
       nome: "Pedro",
       data: "12/08/26",
@@ -53,13 +53,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _telas = [
-      ConteudoHome(nomeAtual: nomeUsuario,lista: listaUsuarios,),
+      ConteudoHome(
+        nomeAtual: nomeUsuario,
+        lista: listaUsuarios,
+        navegacao: () {
+          return setState(() {
+            _navegacaoindex = 2;
+          });
+        },
+      ),
       HorariosPage(lista: listaUsuarios),
-      Faturamento(lista: listaUsuarios),
-      Perfil(nomeAtual: nomeUsuario, funcao: atualizarNome,lista: listaUsuarios,),
+      Faturamento(
+        lista: listaUsuarios,
+        navegacao: () {
+          return setState(() {
+            _navegacaoindex = 2;
+          });
+        },
+      ),
+      Perfil(
+        nomeAtual: nomeUsuario,
+        funcao: atualizarNome,
+        lista: listaUsuarios,
+        navegacao: () {
+          return setState(() {
+            _navegacaoindex = 2;
+          });
+        },
+      ),
     ];
-     
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Agendify"),

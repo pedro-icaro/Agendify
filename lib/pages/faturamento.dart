@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 
 class Faturamento extends StatefulWidget {
   final List lista;
-  const Faturamento({required this.lista, super.key});
+  final VoidCallback navegacao;
+  Faturamento({required this.navegacao, required this.lista, super.key});
 
   @override
   State<Faturamento> createState() => _FaturamentoState();
@@ -27,7 +28,7 @@ class _FaturamentoState extends State<Faturamento> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
-              FaturamentoCard(lista: widget.lista),
+              FaturamentoCard(lista: widget.lista, navegacao: widget.navegacao),
               SizedBox(height: 15),
               Text(
                 "Ultimos 30 Dias",

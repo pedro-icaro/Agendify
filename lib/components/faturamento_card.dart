@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 
 class FaturamentoCard extends StatefulWidget {
   final List lista;
-  const FaturamentoCard({required this.lista, super.key});
+  final VoidCallback navegacao;
+  FaturamentoCard({required this.navegacao, required this.lista, super.key});
 
   @override
   State<FaturamentoCard> createState() => _FaturamentoCardState();
 }
 
 class _FaturamentoCardState extends State<FaturamentoCard> {
-  double get faturamentoTotal{
-    return widget.lista.fold(0.0, (soma,cliente)=> soma + cliente.valor);
+  double get faturamentoTotal {
+    return widget.lista.fold(0.0, (soma, cliente) => soma + cliente.valor);
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 340, 
+      width: 340,
       height: 160,
       child: Card(
         elevation: 5,
@@ -28,7 +30,10 @@ class _FaturamentoCardState extends State<FaturamentoCard> {
             children: [
               Text("Veja seu Faturamento!", style: TextStyle(fontSize: 20)),
               SizedBox(height: 2),
-              Text("R\$ ${faturamentoTotal.toStringAsFixed(2)}", style: TextStyle(fontSize: 25)),
+              Text(
+                "R\$ ${faturamentoTotal.toStringAsFixed(2)}",
+                style: TextStyle(fontSize: 25),
+              ),
 
               const Spacer(),
 
@@ -41,7 +46,9 @@ class _FaturamentoCardState extends State<FaturamentoCard> {
                       backgroundColor: Colors.blue,
                       shape: CircleBorder(),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.navegacao() ;
+                    },
                     child: Icon(Icons.arrow_forward, size: 22),
                   ),
                 ),

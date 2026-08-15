@@ -2,10 +2,11 @@ import 'package:agendify/components/faturamento_card.dart';
 import 'package:flutter/material.dart';
 
 class Perfil extends StatefulWidget {
+  final VoidCallback navegacao;
   final List lista;
   String nomeAtual;
   void Function(String) funcao;
-  Perfil({required this.lista ,required this.nomeAtual, required this.funcao, super.key});
+  Perfil({required this.navegacao,required this.lista ,required this.nomeAtual, required this.funcao, super.key});
 
   @override
   State<Perfil> createState() => _PerfilState();
@@ -92,7 +93,7 @@ class _PerfilState extends State<Perfil> {
               SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
-                child: FaturamentoCard(lista: widget.lista),
+                child: FaturamentoCard(lista: widget.lista,navegacao: widget.navegacao,),
               ),
             ],
           ),
