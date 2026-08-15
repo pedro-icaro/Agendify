@@ -3,7 +3,8 @@ import 'package:agendify/models/clientes_models.dart';
 import 'package:flutter/material.dart';
 
 class ListaClientes extends StatefulWidget {
-  const ListaClientes({super.key});
+  final List<ClientesModels> lista;
+  const ListaClientes({required this.lista, super.key});
 
   @override
   State<ListaClientes> createState() => _ListaClientesState();
@@ -24,7 +25,7 @@ class _ListaClientesState extends State<ListaClientes> {
     if (nomeDigitado.isEmpty) return;
 
     setState(() {
-      listaUsuarios.add(
+      widget.lista.add(
         ClientesModels(
           nome: nomeDigitado,
           data: dataDigitada,
@@ -40,30 +41,42 @@ class _ListaClientesState extends State<ListaClientes> {
     horaControler.clear();
   }
 
-  final List<ClientesModels> listaUsuarios = [
-
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: listaUsuarios.isEmpty ? Center(
-        child: Column(children: [Text("Nenhum Cliente Adicionado",style: TextStyle(fontSize: 20,),),SizedBox(height: 40,), 
-        Image.asset("assets/images/Waiting.png",width: 200,height: 450,fit: BoxFit.cover,)],),
-      ): ListView.builder(
-        shrinkWrap: true, 
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: listaUsuarios.length,
-        itemBuilder: (context, index) {
-          return ClienteCard(
-            clientesModelo: listaUsuarios[index],
-            deletar: () {
-              setState(() {
-                listaUsuarios.removeAt(index);
-              });
-            },
-          );
-        },
-      ),
+      body: widget.lista.isEmpty
+          ? Center(
+              child: Column(
+                children: [
+                  Text(
+                    "Nenhum Cliente Adicionado",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  SizedBox(height: 40),
+                  Image.asset(
+                    "assets/images/Waiting.png",
+                    width: 200,
+                    height: 450,
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              ),
+            )
+          : ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: widget.lista.length,
+              itemBuilder: (context, index) {
+                return ClienteCard(
+                  clientesModelo: widget.lista[index],
+                  deletar: () {
+                    setState(() {
+                      widget.lista.removeAt(index);
+                    });
+                  },
+                );
+              },
+            ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
         onPressed: () {

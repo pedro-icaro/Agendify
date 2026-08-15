@@ -1,6 +1,7 @@
 import 'package:agendify/components/conteudo_home.dart';
 import 'package:agendify/components/faturamento_card.dart';
 import 'package:agendify/components/subtitulo_home.dart';
+import 'package:agendify/models/clientes_models.dart';
 import 'package:agendify/pages/faturamento.dart';
 import 'package:agendify/pages/horarios_page.dart';
 import 'package:agendify/pages/perfil.dart';
@@ -14,6 +15,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+   final List<ClientesModels> listaUsuarios = [
+    ClientesModels(
+      nome: "Pedro",
+      data: "12/08/26",
+      horario: "9:30",
+      valor: 50.00,
+    ),
+    ClientesModels(
+      nome: "Julia",
+      data: "12/08/26",
+      horario: "14:30",
+      valor: 25.00,
+    ),
+    ClientesModels(
+      nome: "Martina",
+      data: "14/08/26",
+      horario: "8:30",
+      valor: 25.00,
+    ),
+    ClientesModels(
+      nome: "Irlandia",
+      data: "14/08/26",
+      horario: "8:30",
+      valor: 25.00,
+    ),
+  ];
   String nomeUsuario = "Pedro";
   int _navegacaoindex = 0;
 
@@ -26,11 +53,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _telas = [
-      ConteudoHome(nomeAtual: nomeUsuario),
-      HorariosPage(),
-      Faturamento(),
-      Perfil(nomeAtual: nomeUsuario, funcao: atualizarNome),
+      ConteudoHome(nomeAtual: nomeUsuario,lista: listaUsuarios,),
+      HorariosPage(lista: listaUsuarios),
+      Faturamento(lista: listaUsuarios),
+      Perfil(nomeAtual: nomeUsuario, funcao: atualizarNome,lista: listaUsuarios,),
     ];
+     
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("Agendify"),

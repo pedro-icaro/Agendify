@@ -4,18 +4,16 @@ import 'package:agendify/models/clientes_models.dart';
 import 'package:flutter/material.dart';
 
 class HorariosPage extends StatefulWidget {
-  const HorariosPage({super.key});
+  final List<ClientesModels> lista;
+  const HorariosPage({required this.lista, super.key});
 
   @override
   State<HorariosPage> createState() => _HorariosPageState();
 }
 
 class _HorariosPageState extends State<HorariosPage> {
- 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListaClientes(),
-    );
+    return Scaffold(body: ListaClientes(lista: widget.lista));
   }
 }
