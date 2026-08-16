@@ -7,7 +7,7 @@ class ListaClientes extends StatefulWidget {
   
   final Function(ClientesModels) onAdicionar;
   final Function(int) onDeletar;
-
+     
   const ListaClientes({
     required this.lista,
     required this.onAdicionar,
