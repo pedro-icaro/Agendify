@@ -35,6 +35,17 @@ class _FaturamentoState extends State<Faturamento> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 15),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: widget.lista.length,
+                itemBuilder: (context, index) {
+                  final cliente = widget.lista[index];
+                  return ClienteCard(clientesModelo: cliente, deletar: (){setState(() {
+                    widget.lista.removeAt(index);
+                  });});
+                },
+              ),
             ],
           ),
         ),

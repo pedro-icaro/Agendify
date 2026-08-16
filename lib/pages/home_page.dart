@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
       valor: 25.00,
     ),
   ];
-  String nomeUsuario = "Pedro";
+  String nomeUsuario = "Maria";
   int _navegacaoindex = 0;
 
   void atualizarNome(novoNome) {
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20),
-            child: Icon(Icons.feedback_outlined, color: Colors.white),
+            child: Icon(Icons.notifications_outlined, color: Colors.white),
           ),
         ],
       ),
