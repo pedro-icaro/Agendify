@@ -6,6 +6,7 @@ import 'package:agendify/pages/faturamento.dart';
 import 'package:agendify/pages/horarios_page.dart';
 import 'package:agendify/pages/perfil.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,38 +16,36 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<ClientesModels> listaUsuarios = [
-    ClientesModels(
-      nome: "Pedro",
-      data: "12/08/26",
-      horario: "9:30",
-      valor: 50.00,
-    ),
-    ClientesModels(
-      nome: "Julia",
-      data: "12/08/26",
-      horario: "14:30",
-      valor: 25.00,
-    ),
-    ClientesModels(
-      nome: "Martina",
-      data: "14/08/26",
-      horario: "8:30",
-      valor: 25.00,
-    ),
-    ClientesModels(
-      nome: "Irlandia",
-      data: "14/08/26",
-      horario: "8:30",
-      valor: 25.00,
-    ),
-  ];
+  List<ClientesModels> listaUsuarios = [];
   String nomeUsuario = "Maria";
   int _navegacaoindex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    final boxClientes = Hive.box<ClientesModels>("clientes");
+    listaUsuarios = boxClientes.values.toList();
+  }
 
   void atualizarNome(novoNome) {
     setState(() {
       nomeUsuario = novoNome;
+    });
+  }
+
+  void _adicionarClienteHive(ClientesModels novoCliente) {
+    setState(() {
+      final boxClientes = Hive.box<ClientesModels>("clientes");
+      boxClientes.add(novoCliente); 
+      listaUsuarios = boxClientes.values.toList(); 
+    });
+  }
+
+  void _deletarClienteHive(int index) {
+    setState(() {
+      final boxClientes = Hive.box<ClientesModels>("clientes");
+      boxClientes.deleteAt(index); 
+      listaUsuarios = boxClientes.values.toList(); 
     });
   }
 
@@ -62,7 +61,11 @@ class _HomePageState extends State<HomePage> {
           });
         },
       ),
-      HorariosPage(lista: listaUsuarios),
+      HorariosPage(
+        lista: listaUsuarios,
+        onAdicionar: _adicionarClienteHive,
+        onDeletar: _deletarClienteHive,
+      ),
       Faturamento(
         lista: listaUsuarios,
         navegacao: () {
@@ -85,15 +88,14 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Agendify"),
-        actions: [
+        title: const Text("Agendify"),
+        actions: const [
           Padding(
             padding: EdgeInsets.only(right: 20),
             child: Icon(Icons.notifications_outlined, color: Colors.white),
           ),
         ],
       ),
-
       body: _telas[_navegacaoindex],
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(16),
@@ -103,7 +105,6 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.blueGrey[900],
             selectedItemColor: Colors.blueAccent,
             unselectedItemColor: Colors.white60,
-
             type: BottomNavigationBarType.fixed,
             currentIndex: _navegacaoindex,
             onTap: (index) {

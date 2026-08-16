@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
-class ClientesModels {
+part 'clientes_models.g.dart';
+
+@HiveType(typeId: 0)
+class ClientesModels extends HiveObject{
+  @HiveField(0)
   final int? id;
+  @HiveField(1)
   final String nome;
+  @HiveField(2)
   final String data;
+  @HiveField(3)
   final String horario;
+  @HiveField(4)
   final double valor;
 
   ClientesModels({

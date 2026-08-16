@@ -45,11 +45,7 @@ class _ListaEstaticaHomeState extends State<ListaEstaticaHome> {
       itemBuilder: (context, index) {
         return ClienteCard(
           clientesModelo: lista[index],
-          deletar: () {
-            setState(() {
-              lista.removeAt(index);
-            });
-          },
+          deletar: (){},
         );
       },
     );

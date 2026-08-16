@@ -4,10 +4,19 @@ import 'package:flutter/material.dart';
 
 class ListaClientes extends StatefulWidget {
   final List<ClientesModels> lista;
-  const ListaClientes({required this.lista, super.key});
+  
+  final Function(ClientesModels) onAdicionar;
+  final Function(int) onDeletar;
+
+  const ListaClientes({
+    required this.lista,
+    required this.onAdicionar,
+    required this.onDeletar,
+    super.key,
+  });
 
   @override
-  State<ListaClientes> createState() => _ListaClientesState();
+  State<ListaClientes> createState() => _ListaClientesState();                                 
 }
 
 class _ListaClientesState extends State<ListaClientes> {
@@ -24,16 +33,14 @@ class _ListaClientesState extends State<ListaClientes> {
 
     if (nomeDigitado.isEmpty) return;
 
-    setState(() {
-      widget.lista.add(
-        ClientesModels(
-          nome: nomeDigitado,
-          data: dataDigitada,
-          horario: horaDigitada,
-          valor: valorDigitado,
-        ),
-      );
-    });
+    widget.onAdicionar(
+      ClientesModels(
+        nome: nomeDigitado,
+        data: dataDigitada,
+        horario: horaDigitada,
+        valor: valorDigitado,
+      ),
+    );
 
     nomeControler.clear();
     valorControler.clear();
@@ -48,11 +55,11 @@ class _ListaClientesState extends State<ListaClientes> {
           ? Center(
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     "Nenhum Cliente Adicionado",
                     style: TextStyle(fontSize: 20),
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Image.asset(
                     "assets/images/Waiting.png",
                     width: 200,
@@ -70,9 +77,7 @@ class _ListaClientesState extends State<ListaClientes> {
                 return ClienteCard(
                   clientesModelo: widget.lista[index],
                   deletar: () {
-                    setState(() {
-                      widget.lista.removeAt(index);
-                    });
+                    widget.onDeletar(index);
                   },
                 );
               },
@@ -91,9 +96,9 @@ class _ListaClientesState extends State<ListaClientes> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Padding(
-                      padding: EdgeInsetsGeometry.only(top: 10),
-                      child: const Text(
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
                         "Novo Agendamento",
                         style: TextStyle(
                           fontSize: 18,
@@ -103,7 +108,7 @@ class _ListaClientesState extends State<ListaClientes> {
                     ),
                     const SizedBox(height: 15),
                     Padding(
-                      padding: EdgeInsetsGeometry.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
                           TextField(
@@ -113,7 +118,6 @@ class _ListaClientesState extends State<ListaClientes> {
                             ),
                           ),
                           const SizedBox(height: 10),
-
                           TextField(
                             controller: valorControler,
                             keyboardType: TextInputType.number,
@@ -124,12 +128,12 @@ class _ListaClientesState extends State<ListaClientes> {
                           const SizedBox(height: 10),
                           TextField(
                             controller: dataControler,
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.number, 
                             decoration: const InputDecoration(
                               labelText: 'Data',
                             ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextField(
                             controller: horaControler,
                             keyboardType: TextInputType.number,
@@ -137,11 +141,10 @@ class _ListaClientesState extends State<ListaClientes> {
                               labelText: 'Horario',
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
-
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueGrey[800],
@@ -159,7 +162,7 @@ class _ListaClientesState extends State<ListaClientes> {
             },
           );
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
